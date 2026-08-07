@@ -1,0 +1,5 @@
+/*
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'self'; frame-ancestors *
+  Permissions-Policy: camera=(), geolocation=(), microphone=()
+  Referrer-Policy: no-referrer
+  X-Content-Type-Options: nosniff

@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Convert Markdown to Jira Data Center wiki markup entirely in your browser.">
+  <meta name="color-scheme" content="light dark">
+  <title>Markdown to Jira Wiki</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app-shell" id="app-shell">
+    <header class="app-header">
+      <div>
+        <p class="eyebrow">Local browser utility</p>
+        <h1>Markdown <span aria-hidden="true">→</span><span class="sr-only">to</span> Jira Wiki</h1>
+        <p class="subtitle">Paste Markdown. Copy Jira-native wiki markup. No upload, account, or backend.</p>
+      </div>
+      <div class="privacy-badge" title="The page makes no network requests">
+        <span class="privacy-dot" aria-hidden="true"></span>
+        Runs locally
+      </div>
+    </header>
+
+    <aside class="compatibility-note" aria-label="Compatibility note">
+      <strong>Target:</strong> Jira Data Center comments and fields configured with the Wiki Style Renderer.
+      Jira Cloud comments use Atlassian Document Format, not wiki markup.
+    </aside>
+
+    <form id="converter-form" class="converter-form" novalidate>
+      <section class="editor-card input-card" aria-labelledby="markdown-label">
+        <div class="card-header">
+          <div>
+            <label id="markdown-label" for="markdown-input">Markdown</label>
+            <span class="counter" id="input-counter">0 characters</span>
+          </div>
+          <div class="button-row" aria-label="Markdown actions">
+            <button type="button" class="button button-quiet" id="paste-button">Paste</button>
+            <button type="button" class="button button-quiet" id="sample-button">Sample</button>
+            <button type="button" class="button button-quiet" id="clear-button" disabled>Clear</button>
+          </div>
+        </div>
+        <div class="textarea-wrap" id="drop-zone">
+          <textarea
+            id="markdown-input"
+            name="markdown"
+            rows="22"
+            placeholder="Paste Markdown here. Jira wiki output appears instantly."
+            autocomplete="off"
+            autocapitalize="off"
+            spellcheck="false"
+            aria-describedby="input-help"
+          ></textarea>
+          <div class="drop-overlay" aria-hidden="true">Drop a Markdown file</div>
+        </div>
+        <p class="card-help" id="input-help">Paste, type, or drop a <code>.md</code> file. Press <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>Enter</kbd> to copy.</p>
+      </section>
+
+      <section class="editor-card output-card" aria-labelledby="jira-label">
+        <div class="card-header">
+          <div>
+            <label id="jira-label" for="jira-output">Jira wiki markup</label>
+            <span class="counter" id="output-counter">0 characters</span>
+          </div>
+          <div class="button-row" aria-label="Jira output actions">
+            <button type="button" class="button button-quiet" id="download-button" disabled>Download</button>
+            <button type="submit" class="button button-primary" id="copy-button" disabled>Copy Jira wiki</button>
+          </div>
+        </div>
+        <div class="textarea-wrap">
+          <textarea
+            id="jira-output"
+            rows="22"
+            readonly
+            placeholder="Converted Jira wiki markup appears here."
+            spellcheck="false"
+            aria-describedby="output-help"
+          ></textarea>
+        </div>
+        <p class="card-help" id="output-help">Common Markdown is converted: headings, emphasis, links, images, lists, task lists, tables, quotes, and code blocks.</p>
+      </section>
+    </form>
+
+    <footer class="app-footer">
+      <span>Everything stays in this browser tab.</span>
+      <a href="embed-example.html" target="_blank" rel="noopener">Iframe integration example</a>
+    </footer>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="converter.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

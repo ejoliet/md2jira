@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Markdown to Jira Wiki — iframe example</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="example-shell">
+    <h1>Iframe integration example</h1>
+    <p class="example-copy">The parent page sends Markdown to the converter with <code>window.postMessage()</code>. The converter returns Jira wiki markup without either page accessing the other page's Document Object Model.</p>
+
+    <div class="example-grid">
+      <section class="example-panel" aria-labelledby="host-form-title">
+        <h2 id="host-form-title">Parent page form</h2>
+        <form id="host-form">
+          <label for="host-markdown">Markdown sent to the iframe</label>
+          <textarea id="host-markdown" name="markdown" spellcheck="false"># Embedded conversion
+
+**Status:** Works without a backend
+
+- Parent sends Markdown
+- Iframe returns Jira wiki
+
+`postMessage` handles cross-origin isolation.</textarea>
+          <button class="button button-primary" type="submit">Convert in iframe</button>
+        </form>
+        <h2>Result received by parent</h2>
+        <pre class="example-result" id="host-result">Waiting for the iframe…</pre>
+      </section>
+
+      <section class="example-panel" aria-labelledby="frame-title">
+        <h2 id="frame-title">Embedded converter</h2>
+        <iframe
+          class="example-frame"
+          id="converter-frame"
+          name="converter-frame"
+          src="index.html?embed=1&amp;autofocus=0"
+          title="Markdown to Jira wiki converter"
+          loading="eager"
+          allow="clipboard-read; clipboard-write"
+        ></iframe>
+      </section>
+    </div>
+  </main>
+  <script src="embed-example.js"></script>
+</body>
+</html>
